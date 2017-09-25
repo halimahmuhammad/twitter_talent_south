@@ -31,7 +31,7 @@
 
 en:
   hello: "Hello world"
-   activerecord:
+  activerecord:
     attributes:
       tweet:
         message: "A Tweet"
