@@ -1,8 +1,10 @@
 <h1>@<%= @user.username %>'s Profile & Tweets</h1>
+<center>
 
 <p><%= @user.name %></p>
 <p><%= @user.location %></p>
 <p><%= @user.bio %></p>
+</center>
 
 <p>
     <% if current_user.following.include?(@user.id) %>
@@ -10,6 +12,10 @@
     <% else %>
         <% if current_user.id != @user.id %>
 	    <%= link_to "Follow", now_following_path(id: @user.id), class: "btn btn-primary" %>
+        <% else %>
+        <%form_for Tweet.new, url: {action: "epi_tweet"} do |f| %>
+    
+    <% end %>
 	<% end %>
     <% end %>
 </p>

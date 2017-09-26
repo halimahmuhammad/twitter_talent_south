@@ -10,6 +10,7 @@ class EpicenterController < ApplicationController
         elsif current_user.id == tweet.user_id
             @following_tweets.push(tweet)
         end
+        
       end
   end
 
@@ -28,7 +29,19 @@ class EpicenterController < ApplicationController
     current_user.following.delete(params[:id].to_i)
     current_user.save
 
-    redirect_to show_user_path(id: params[:id])
+    redirect_back(fallback_location: root_path)
+  end
+
+  def epi_tweet
+    @tweet = tweet.new
+    @tweet.message = "#{params[:tweet][:message]}"
+    @tweet.user_id = "#{params[:tweet][:user_id].to_i}"
+    @tweet.save
+    @new_tweet = get_tagged(@tweet)
+
+    @tweet.update(message: @new_tweet.message)
+ 
+
   end
 end
 
